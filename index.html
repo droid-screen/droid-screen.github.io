@@ -1,1 +1,124 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroidScreen - A Window to Your Android</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-mobile-alt"></i>
+                <span>DroidScreen</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">DroidScreen</h1>
+                <p class="hero-subtitle">A window to your Android</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fab fa-windows"></i>
+                        Download for Windows
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fab fa-apple"></i>
+                        Download for Mac
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-globe"></i>
+                        Use in Web browser
+                    </button>
+                    <button class="btn btn-outline" onclick="document.querySelector('.features').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-content">
+                            <div class="app-grid">
+                                <div class="app-icon"></div>
+                                <div class="app-icon"></div>
+                                <div class="app-icon"></div>
+                                <div class="app-icon"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">DroidScreen puts your Android on your desktop.</h2>
+            <p class="section-subtitle">Use apps, play games, control your Android device.</p>
+            <p class="section-description">A desktop and web app, compatible with Windows, Mac, and any modern browser.</p>
+            
+            <div class="platforms">
+                <div class="platform">
+                    <i class="fab fa-windows"></i>
+                    <span>Windows</span>
+                </div>
+                <div class="platform">
+                    <i class="fab fa-apple"></i>
+                    <span>Mac</span>
+                </div>
+                <div class="platform">
+                    <i class="fas fa-globe"></i>
+                    <span>Web</span>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h3>Use your Keyboard</h3>
+                    <p>Type a hundred words per minute on your phone using your desktop keyboard.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <h3>Point and Click</h3>
+                    <p>Point, click, scroll. Your mouse works too.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Software License</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; DroidScreen, Inc.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
