@@ -202,6 +202,133 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize mobile menu
     createMobileMenu();
+
+    // Download button email collection with beautiful modal
+    const downloadButtons = document.querySelectorAll('.btn-primary');
+    const modal = document.getElementById('emailModal');
+    const platformName = document.getElementById('platformName');
+    const emailInput = document.getElementById('emailInput');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const closeBtn = document.querySelector('.close');
+    
+    let currentPlatform = '';
+    
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const buttonText = this.textContent.trim();
+            currentPlatform = buttonText.includes('Windows') ? 'Windows' : 
+                           buttonText.includes('Mac') ? 'Mac' : 
+                           buttonText.includes('Web') ? 'Web' : 'Unknown';
+            
+            // Update modal content
+            platformName.textContent = currentPlatform;
+            emailInput.value = '';
+            
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Focus on email input
+            setTimeout(() => {
+                emailInput.focus();
+            }, 100);
+        });
+    });
+    
+    // Handle download button in modal
+    downloadBtn.addEventListener('click', function() {
+        const email = emailInput.value.trim();
+        
+        if (email === '') {
+            emailInput.style.borderColor = '#ef4444';
+            emailInput.focus();
+            return;
+        }
+        
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+            // Success - close modal and show success message
+            closeModal();
+            showSuccessMessage(email, currentPlatform);
+            console.log(`Email collected: ${email} for ${currentPlatform} download`);
+        } else {
+            emailInput.style.borderColor = '#ef4444';
+            emailInput.focus();
+        }
+    });
+    
+    // Handle cancel button
+    cancelBtn.addEventListener('click', closeModal);
+    
+    // Handle close button
+    closeBtn.addEventListener('click', closeModal);
+    
+    // Handle clicking outside modal
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
+    });
+    
+    // Reset email input border on typing
+    emailInput.addEventListener('input', function() {
+        this.style.borderColor = '#e2e8f0';
+    });
+    
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        emailInput.value = '';
+        emailInput.style.borderColor = '#e2e8f0';
+    }
+    
+    function showSuccessMessage(email, platform) {
+        // Create a beautiful success notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            z-index: 3000;
+            animation: slideInRight 0.5s ease;
+            max-width: 400px;
+        `;
+        notification.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-check-circle" style="font-size: 1.2rem;"></i>
+                <div>
+                    <strong>Thank you!</strong><br>
+                    Download link for ${platform} will be sent to ${email}
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remove notification after 5 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.5s ease';
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 500);
+        }, 5000);
+    }
 });
 
 // Parallax effect for hero section
