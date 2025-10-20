@@ -152,7 +152,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const navContainer = document.querySelector('.nav-container');
         const navMenu = document.querySelector('.nav-menu');
         
-        // Create mobile menu button
+    // Create mobile menu button only on desktop
+    if (window.innerWidth > 768) {
         const mobileMenuBtn = document.createElement('button');
         mobileMenuBtn.className = 'mobile-menu-btn';
         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
@@ -198,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuBtn.addEventListener('click', function() {
             navMenu.classList.toggle('active');
         });
+    }
     };
 
     // Initialize mobile menu
