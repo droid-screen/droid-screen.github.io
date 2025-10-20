@@ -223,6 +223,39 @@ document.addEventListener('DOMContentLoaded', function() {
                            buttonText.includes('Mac') ? 'Mac' : 
                            buttonText.includes('Web') ? 'Web' : 'Unknown';
             
+            // Send Google Analytics event for Windows download
+            if (currentPlatform === 'Windows') {
+                // Check if gtag is available (Google Analytics 4)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download_windows', {
+                        'event_category': 'download',
+                        'event_label': 'Windows Download Button Clicked'
+                    });
+                    console.log('Google Analytics event sent: download_windows');
+                }
+            }
+
+            if (currentPlatform === 'Mac') {
+                // Check if gtag is available (Google Analytics 4)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download_mac', {
+                        'event_category': 'download',
+                        'event_label': 'Mac Download Button Clicked'
+                    });
+                    console.log('Google Analytics event sent: download_mac');
+                }
+            }
+
+            if (currentPlatform === 'Web') {
+                // Check if gtag is available (Google Analytics 4)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download_web', {
+                        'event_category': 'download',
+                        'event_label': 'Web Download Button Clicked'
+                    });
+                    console.log('Google Analytics event sent: download_web');
+                }
+            }
             // Update modal content
             platformName.textContent = currentPlatform;
             emailInput.value = '';
