@@ -4,10 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DroidScreen - A Window to Your Android</title>
+    <meta name="description" content="Mirror and control your Android from Windows, Mac, or the web. Use apps, play games, and type with your keyboard using DroidScreen.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://droidscreen.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📱%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="theme-color" content="#2563eb">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DroidScreen — A window to your Android">
+    <meta property="og:description" content="Mirror and control your Android from Windows, Mac, or the web.">
+    <meta property="og:url" content="https://droidscreen.com/">
+    <meta property="og:image" content="https://droidscreen.com/img.jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="DroidScreen">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DroidScreen — A window to your Android">
+    <meta name="twitter:description" content="Mirror and control your Android from Windows, Mac, or the web.">
+    <meta name="twitter:image" content="https://droidscreen.com/img.jpeg">
+    <meta name="twitter:site" content="@droidscreen">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "DroidScreen",
+      "alternateName": "Droid Screen",
+      "url": "https://droidscreen.com/",
+      "image": "https://droidscreen.com/img.jpeg",
+      "description": "Mirror and control your Android from Windows, Mac, or the web. Use apps, play games, and type with your keyboard using DroidScreen.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": ["Windows", "macOS", "Web"],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "category": "beta"
+      },
+      "potentialAction": {
+        "@type": "DownloadAction",
+        "target": "https://droidscreen.com/"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "DroidScreen",
+      "url": "https://droidscreen.com/",
+      "logo": "https://droidscreen.com/img.jpeg",
+      "sameAs": []
+    }
+    </script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M1BF48870"></script>
@@ -54,12 +108,14 @@
             <div class="hero-image">
                 <div class="phone-mockup">
                     <div class="phone-screen">
-                        <img src="img.jpeg" alt="Android Phone Screenshot" class="phone-screenshot">
+                        <img src="img.jpeg" alt="Android Phone Screenshot" class="phone-screenshot" loading="lazy" width="300" height="600">
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    
 
     <!-- Features Section -->
     <section class="features">
@@ -98,6 +154,24 @@
                     <h3>Point and Click</h3>
                     <p>Point, click, scroll. Your mouse works too.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently asked questions</h2>
+            <div class="faq-item">
+                <h3>Does DroidScreen work on Windows and Mac?</h3>
+                <p>Yes, our desktop app supports Windows and Mac, and you can also use DroidScreen in a modern web browser.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need to enable USB debugging?</h3>
+                <p>Depending on your use case, some features may require enabling developer options and USB debugging on your Android device.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I type and control my phone with mouse and keyboard?</h3>
+                <p>Yes, DroidScreen enables keyboard typing and mouse control for a smooth desktop-like experience.</p>
             </div>
         </div>
     </section>
