@@ -70,6 +70,51 @@ body {
     color: #2563eb;
 }
 
+/* Language selector */
+.nav-lang {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#langSelect {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 40px 8px 12px;
+    color: #334155;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#langSelect:hover {
+    border-color: #cbd5e1;
+}
+
+#langSelect:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+@media (max-width: 768px) {
+    .nav-lang label {
+        display: none;
+    }
+    #langSelect {
+        padding: 8px 36px 8px 10px;
+        font-weight: 500;
+    }
+}
+
 /* Hero Section */
 .hero {
     padding: 120px 0 80px;

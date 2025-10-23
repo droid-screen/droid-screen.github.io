@@ -80,6 +80,16 @@
                 <i class="fas fa-mobile-alt"></i>
                 <span>DroidScreen</span>
             </div>
+            <div class="nav-lang">
+                <label for="langSelect" style="margin-right:8px; color:#334155; font-weight:500;">Language</label>
+                <select id="langSelect" aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="zh">简体中文</option>
+                    <option value="hi">हिन्दी</option>
+                    <option value="ar">العربية</option>
+                </select>
+            </div>
         </div>
     </nav>
 
@@ -88,21 +98,21 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">DroidScreen</h1>
-                <p class="hero-subtitle">A window to your Android</p>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">A window to your Android</p>
                 <div class="hero-buttons">
                     <button class="btn btn-primary" data-platform="Windows">
                         <i class="fab fa-windows"></i>
-                        Download for Windows
+                        <span data-i18n="cta.download_windows">Download for Windows</span>
                     </button>
                     <button class="btn btn-primary" data-platform="Mac">
                         <i class="fab fa-apple"></i>
-                        Download for Mac
+                        <span data-i18n="cta.download_mac">Download for Mac</span>
                     </button>
                     <button class="btn btn-primary" data-platform="Web">
                         <i class="fas fa-globe"></i>
-                        Use in Web browser
+                        <span data-i18n="cta.use_web">Use in Web browser</span>
                     </button>
-                    <button class="btn btn-outline" onclick="document.querySelector('.features').scrollIntoView({behavior: 'smooth'}); if (typeof gtag !== 'undefined') { gtag('event', 'learn_more', { 'event_category': 'engagement', 'event_label': 'Learn More Button Clicked' }); console.log('Google Analytics event sent: learn_more'); }">Learn More</button>
+                    <button class="btn btn-outline" onclick="document.querySelector('.features').scrollIntoView({behavior: 'smooth'}); if (typeof gtag !== 'undefined') { gtag('event', 'learn_more', { 'event_category': 'engagement', 'event_label': 'Learn More Button Clicked' }); console.log('Google Analytics event sent: learn_more'); }"><span data-i18n="cta.learn_more">Learn More</span></button>
                 </div>
             </div>
             <div class="hero-image">
@@ -120,9 +130,9 @@
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">DroidScreen puts your Android on your desktop.</h2>
-            <p class="section-subtitle">Use apps, play games, control your Android device.</p>
-            <p class="section-description">A desktop and web app, compatible with Windows, Mac, and any modern browser.</p>
+            <h2 class="section-title" data-i18n="features.title">DroidScreen puts your Android on your desktop.</h2>
+            <p class="section-subtitle" data-i18n="features.subtitle">Use apps, play games, control your Android device.</p>
+            <p class="section-description" data-i18n="features.description">A desktop and web app, compatible with Windows, Mac, and any modern browser.</p>
             
             <div class="platforms">
                 <div class="platform">
@@ -135,7 +145,7 @@
                 </div>
                 <div class="platform">
                     <i class="fas fa-globe"></i>
-                    <span>Web</span>
+                    <span data-i18n="platform.web">Web</span>
                 </div>
             </div>
 
@@ -144,15 +154,15 @@
                     <div class="feature-icon">
                         <i class="fas fa-keyboard"></i>
                     </div>
-                    <h3>Use your Keyboard</h3>
-                    <p>Type a hundred words per minute on your phone using your desktop keyboard.</p>
+                    <h3 data-i18n="cards.keyboard.title">Use your Keyboard</h3>
+                    <p data-i18n="cards.keyboard.body">Type a hundred words per minute on your phone using your desktop keyboard.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-mouse-pointer"></i>
                     </div>
-                    <h3>Point and Click</h3>
-                    <p>Point, click, scroll. Your mouse works too.</p>
+                    <h3 data-i18n="cards.mouse.title">Point and Click</h3>
+                    <p data-i18n="cards.mouse.body">Point, click, scroll. Your mouse works too.</p>
                 </div>
             </div>
         </div>
@@ -160,18 +170,18 @@
 
     <section class="faq">
         <div class="container">
-            <h2>Frequently asked questions</h2>
+            <h2 data-i18n="faq.title">Frequently asked questions</h2>
             <div class="faq-item">
-                <h3>Does DroidScreen work on Windows and Mac?</h3>
-                <p>Yes, our desktop app supports Windows and Mac, and you can also use DroidScreen in a modern web browser.</p>
+                <h3 data-i18n="faq.q1">Does DroidScreen work on Windows and Mac?</h3>
+                <p data-i18n="faq.a1">Yes, our desktop app supports Windows and Mac, and you can also use DroidScreen in a modern web browser.</p>
             </div>
             <div class="faq-item">
-                <h3>Do I need to enable USB debugging?</h3>
-                <p>Depending on your use case, some features may require enabling developer options and USB debugging on your Android device.</p>
+                <h3 data-i18n="faq.q2">Do I need to enable USB debugging?</h3>
+                <p data-i18n="faq.a2">Depending on your use case, some features may require enabling developer options and USB debugging on your Android device.</p>
             </div>
             <div class="faq-item">
-                <h3>Can I type and control my phone with mouse and keyboard?</h3>
-                <p>Yes, DroidScreen enables keyboard typing and mouse control for a smooth desktop-like experience.</p>
+                <h3 data-i18n="faq.q3">Can I type and control my phone with mouse and keyboard?</h3>
+                <p data-i18n="faq.a3">Yes, DroidScreen enables keyboard typing and mouse control for a smooth desktop-like experience.</p>
             </div>
         </div>
     </section>
@@ -197,15 +207,15 @@
     <div id="emailModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Get DroidScreen</h3>
+                <h3 data-i18n="modal.title">Get DroidScreen</h3>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <p>Thanks for your interest in DroidScreen! We'll notify you when a beta version is available.</p>
+                <p data-i18n="modal.body">Thanks for your interest in DroidScreen! We'll notify you when a beta version is available.</p>
                 <input type="email" id="emailInput" placeholder="your@email.com" required>
                 <div class="modal-actions">
-                    <button id="downloadBtn" class="btn btn-primary">Submit</button>
-                    <button id="cancelBtn" class="btn btn-outline">Cancel</button>
+                    <button id="downloadBtn" class="btn btn-primary" data-i18n="modal.submit">Submit</button>
+                    <button id="cancelBtn" class="btn btn-outline" data-i18n="modal.cancel">Cancel</button>
                 </div>
             </div>
         </div>

@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Download button email collection with beautiful modal
     // Configure this with your Google Apps Script Web App URL
-    const SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby-L1fvh74dGGA57mxLjdGt68vLqkHIHC2GhL0k2JEQtNTXhrvFN3FrSQjpA_g4kv-X/exec';
+    const SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxg_GdR_2G2euLvuw52e1whJFSSDUv18GM-ey5M--ta6VBKGJ6Zw12ELbD8sNDSENfS/exec';
     // Scope to hero buttons only and use data-platform for reliable detection
     const downloadButtons = document.querySelectorAll('.hero .btn.btn-primary');
     const modal = document.getElementById('emailModal');
@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadBtn = document.getElementById('downloadBtn');
     const cancelBtn = document.getElementById('cancelBtn');
     const closeBtn = document.querySelector('.close');
+    const langSelect = document.getElementById('langSelect');
     
     let currentPlatform = '';
     
@@ -294,6 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Send to Google Sheets (fire-and-forget)
             if (SHEETS_WEB_APP_URL) {
                 try {
+                    const currentLang = (langSelect && langSelect.value) || (typeof localStorage !== 'undefined' && localStorage.getItem('lang')) || 'en';
                     fetch(SHEETS_WEB_APP_URL, {
                         method: 'POST',
                         mode: 'no-cors',
@@ -301,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         body: JSON.stringify({
                             email,
                             platform: currentPlatform,
+                            language: currentLang,
                             timestamp: new Date().toISOString(),
                         }),
                     });
@@ -387,6 +390,172 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
         }, 5000);
     }
+
+    // --- i18n ---
+    const translations = {
+        en: {
+            'hero.subtitle': 'A window to your Android',
+            'cta.download_windows': 'Download for Windows',
+            'cta.download_mac': 'Download for Mac',
+            'cta.use_web': 'Use in Web browser',
+            'cta.learn_more': 'Learn More',
+            'features.title': 'DroidScreen puts your Android on your desktop.',
+            'features.subtitle': 'Use apps, play games, control your Android device.',
+            'features.description': 'A desktop and web app, compatible with Windows, Mac, and any modern browser.',
+            'platform.web': 'Web',
+            'cards.keyboard.title': 'Use your Keyboard',
+            'cards.keyboard.body': 'Type a hundred words per minute on your phone using your desktop keyboard.',
+            'cards.mouse.title': 'Point and Click',
+            'cards.mouse.body': 'Point, click, scroll. Your mouse works too.',
+            'faq.title': 'Frequently asked questions',
+            'faq.q1': 'Does DroidScreen work on Windows and Mac?',
+            'faq.a1': 'Yes, our desktop app supports Windows and Mac, and you can also use DroidScreen in a modern web browser.',
+            'faq.q2': 'Do I need to enable USB debugging?',
+            'faq.a2': 'Depending on your use case, some features may require enabling developer options and USB debugging on your Android device.',
+            'faq.q3': 'Can I type and control my phone with mouse and keyboard?',
+            'faq.a3': 'Yes, DroidScreen enables keyboard typing and mouse control for a smooth desktop-like experience.',
+            'modal.title': 'Get DroidScreen',
+            'modal.body': "Thanks for your interest in DroidScreen! We'll notify you when a beta version is available.",
+            'modal.submit': 'Submit',
+            'modal.cancel': 'Cancel',
+            'footer.license': 'Software License',
+            'footer.privacy': 'Privacy'
+        },
+        es: {
+            'hero.subtitle': 'Una ventana a tu Android',
+            'cta.download_windows': 'Descargar para Windows',
+            'cta.download_mac': 'Descargar para Mac',
+            'cta.use_web': 'Usar en el navegador',
+            'cta.learn_more': 'Saber más',
+            'features.title': 'DroidScreen pone tu Android en tu escritorio.',
+            'features.subtitle': 'Usa aplicaciones, juega, controla tu dispositivo Android.',
+            'features.description': 'Aplicación de escritorio y web, compatible con Windows, Mac y cualquier navegador moderno.',
+            'platform.web': 'Web',
+            'cards.keyboard.title': 'Usa tu teclado',
+            'cards.keyboard.body': 'Escribe a cien palabras por minuto en tu teléfono usando el teclado de tu escritorio.',
+            'cards.mouse.title': 'Apuntar y hacer clic',
+            'cards.mouse.body': 'Apunta, haz clic, desplázate. Tu ratón también funciona.',
+            'faq.title': 'Preguntas frecuentes',
+            'faq.q1': '¿DroidScreen funciona en Windows y Mac?',
+            'faq.a1': 'Sí, nuestra app de escritorio admite Windows y Mac, y también puedes usar DroidScreen en un navegador moderno.',
+            'faq.q2': '¿Necesito activar la depuración USB?',
+            'faq.a2': 'Según tu caso de uso, algunas funciones pueden requerir activar opciones de desarrollador y depuración USB.',
+            'faq.q3': '¿Puedo escribir y controlar mi teléfono con mouse y teclado?',
+            'faq.a3': 'Sí, DroidScreen permite escribir con teclado y controlar con el mouse para una experiencia fluida.',
+            'modal.title': 'Obtener DroidScreen',
+            'modal.body': '¡Gracias por tu interés en DroidScreen! Te avisaremos cuando haya una versión beta disponible.',
+            'modal.submit': 'Enviar',
+            'modal.cancel': 'Cancelar',
+            'footer.license': 'Licencia de software',
+            'footer.privacy': 'Privacidad'
+        },
+        zh: {
+            'hero.subtitle': '连接你的 Android 的窗口',
+            'cta.download_windows': '下载 Windows 版',
+            'cta.download_mac': '下载 Mac 版',
+            'cta.use_web': '在浏览器中使用',
+            'cta.learn_more': '了解更多',
+            'features.title': 'DroidScreen 让你的 Android 显示在桌面上。',
+            'features.subtitle': '使用应用、玩游戏、控制你的 Android 设备。',
+            'features.description': '桌面与网页应用，兼容 Windows、Mac 以及任何现代浏览器。',
+            'platform.web': '网页',
+            'cards.keyboard.title': '使用你的键盘',
+            'cards.keyboard.body': '使用桌面键盘在手机上快速输入。',
+            'cards.mouse.title': '指点与点击',
+            'cards.mouse.body': '指点、点击、滚动。鼠标同样可用。',
+            'faq.title': '常见问题',
+            'faq.q1': 'DroidScreen 是否支持 Windows 和 Mac？',
+            'faq.a1': '是的，我们的桌面应用支持 Windows 和 Mac，你也可以在现代浏览器中使用 DroidScreen。',
+            'faq.q2': '需要开启 USB 调试吗？',
+            'faq.a2': '根据你的使用场景，某些功能可能需要开启开发者选项与 USB 调试。',
+            'faq.q3': '可以用鼠标和键盘控制手机吗？',
+            'faq.a3': '可以，DroidScreen 支持键盘输入与鼠标控制，带来桌面般体验。',
+            'modal.title': '获取 DroidScreen',
+            'modal.body': '感谢关注！我们将在测试版可用时通知你。',
+            'modal.submit': '提交',
+            'modal.cancel': '取消',
+            'footer.license': '软件许可',
+            'footer.privacy': '隐私'
+        },
+        hi: {
+            'hero.subtitle': 'आपके Android की खिड़की',
+            'cta.download_windows': 'Windows के लिए डाउनलोड करें',
+            'cta.download_mac': 'Mac के लिए डाउनलोड करें',
+            'cta.use_web': 'वेब ब्राउज़र में उपयोग करें',
+            'cta.learn_more': 'और जानें',
+            'features.title': 'DroidScreen आपके Android को आपके डेस्कटॉप पर लाता है।',
+            'features.subtitle': 'ऐप्स का उपयोग करें, गेम खेलें, अपने Android डिवाइस को नियंत्रित करें।',
+            'features.description': 'डेस्कटॉप और वेब ऐप, Windows, Mac और किसी भी आधुनिक ब्राउज़र के साथ संगत।',
+            'platform.web': 'वेब',
+            'cards.keyboard.title': 'अपना कीबोर्ड उपयोग करें',
+            'cards.keyboard.body': 'डेस्कटॉप कीबोर्ड से अपने फोन पर तेज़ी से लिखें।',
+            'cards.mouse.title': 'पॉइंट और क्लिक',
+            'cards.mouse.body': 'पॉइंट, क्लिक, स्क्रॉल। आपका माउस भी काम करता है।',
+            'faq.title': 'अक्सर पूछे जाने वाले प्रश्न',
+            'faq.q1': 'क्या DroidScreen Windows और Mac पर काम करता है?',
+            'faq.a1': 'हाँ, हमारा डेस्कटॉप ऐप Windows और Mac को सपोर्ट करता है, और आप वेब ब्राउज़र में भी उपयोग कर सकते हैं।',
+            'faq.q2': 'क्या USB डिबगिंग सक्षम करनी होगी?',
+            'faq.a2': 'आपके उपयोग के आधार पर, कुछ फ़ीचर्स के लिए डेवलपर ऑप्शन और USB डिबगिंग सक्षम करना आवश्यक हो सकता है।',
+            'faq.q3': 'क्या मैं माउस और कीबोर्ड से फ़ोन नियंत्रित कर सकता हूँ?',
+            'faq.a3': 'हाँ, DroidScreen से कीबोर्ड टाइपिंग और माउस कंट्रोल संभव है।',
+            'modal.title': 'DroidScreen प्राप्त करें',
+            'modal.body': 'रुचि दिखाने के लिए धन्यवाद! बीटा उपलब्ध होते ही हम आपको सूचित करेंगे।',
+            'modal.submit': 'सबमिट करें',
+            'modal.cancel': 'रद्द करें',
+            'footer.license': 'सॉफ़्टवेयर लाइसेंस',
+            'footer.privacy': 'गोपनीयता'
+        },
+        ar: {
+            'hero.subtitle': 'نافذة إلى جهاز Android الخاص بك',
+            'cta.download_windows': 'تنزيل لـ Windows',
+            'cta.download_mac': 'تنزيل لـ Mac',
+            'cta.use_web': 'استخدم في المتصفح',
+            'cta.learn_more': 'اعرف المزيد',
+            'features.title': 'يجعل DroidScreen جهاز Android الخاص بك على سطح المكتب.',
+            'features.subtitle': 'استخدم التطبيقات، العب الألعاب، وتحكم في جهاز Android.',
+            'features.description': 'تطبيق لسطح المكتب والويب، متوافق مع Windows وMac وأي متصفح حديث.',
+            'platform.web': 'الويب',
+            'cards.keyboard.title': 'استخدم لوحة المفاتيح',
+            'cards.keyboard.body': 'اكتب بسرعة على هاتفك باستخدام لوحة مفاتيح سطح المكتب.',
+            'cards.mouse.title': 'أشر وانقر',
+            'cards.mouse.body': 'أشر، انقر، مرر. يعمل الماوس أيضًا.',
+            'faq.title': 'الأسئلة الشائعة',
+            'faq.q1': 'هل يعمل DroidScreen على Windows وMac؟',
+            'faq.a1': 'نعم، يدعم تطبيقنا لسطح المكتب Windows وMac، ويمكنك أيضًا استخدام DroidScreen في متصفح حديث.',
+            'faq.q2': 'هل أحتاج إلى تفعيل تصحيح USB؟',
+            'faq.a2': 'اعتمادًا على حالتك، قد تتطلب بعض الميزات تفعيل خيارات المطور وتصحيح USB.',
+            'faq.q3': 'هل يمكنني التحكم في الهاتف باستخدام الماوس ولوحة المفاتيح؟',
+            'faq.a3': 'نعم، يتيح DroidScreen الكتابة بلوحة المفاتيح والتحكم بالماوس لتجربة سلسة.',
+            'modal.title': 'احصل على DroidScreen',
+            'modal.body': 'شكرًا لاهتمامك! سنخطرك عند توفر الإصدار التجريبي.',
+            'modal.submit': 'إرسال',
+            'modal.cancel': 'إلغاء',
+            'footer.license': 'رخصة البرنامج',
+            'footer.privacy': 'الخصوصية'
+        }
+    };
+
+    function applyTranslations(lang) {
+        const dict = translations[lang] || translations.en;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key]) el.textContent = dict[key];
+        });
+        // RTL support for Arabic
+        if (lang === 'ar') {
+            document.documentElement.setAttribute('dir', 'rtl');
+        } else {
+            document.documentElement.setAttribute('dir', 'ltr');
+        }
+    }
+
+    if (langSelect) {
+        langSelect.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            try { localStorage.setItem('lang', lang); } catch (_) {}
+            applyTranslations(lang);
+        });
+    }
 });
 
 // Parallax effect for hero section
@@ -423,4 +592,24 @@ window.addEventListener('load', function() {
         const originalText = heroTitle.textContent;
         typeWriter(heroTitle, originalText, 150);
     }
+    // Initialize saved language
+    try {
+        const sel = document.getElementById('langSelect');
+        let savedLang = localStorage.getItem('lang');
+        let initialLang = savedLang;
+        if (!initialLang) {
+            const navLangs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en']).map(l => (l || '').toLowerCase());
+            const pick = (langs) => {
+                if (langs.some(l => l.startsWith('hi'))) return 'hi';
+                if (langs.some(l => l.startsWith('zh'))) return 'zh';
+                if (langs.some(l => l.startsWith('es'))) return 'es';
+                if (langs.some(l => l.startsWith('ar'))) return 'ar';
+                return 'en';
+            };
+            initialLang = pick(navLangs);
+            try { localStorage.setItem('lang', initialLang); } catch (_) {}
+        }
+        if (sel) { sel.value = initialLang; }
+        applyTranslations(initialLang || 'en');
+    } catch (_) {}
 });
