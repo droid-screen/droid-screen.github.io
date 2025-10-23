@@ -206,9 +206,10 @@ document.addEventListener('DOMContentLoaded', function() {
     createMobileMenu();
 
     // Download button email collection with beautiful modal
-    const downloadButtons = document.querySelectorAll('.btn-primary');
+    // Scope to hero buttons only and use data-platform for reliable detection
+    const downloadButtons = document.querySelectorAll('.hero .btn.btn-primary');
     const modal = document.getElementById('emailModal');
-    const platformName = document.getElementById('platformName');
+    // platformName element was removed from modal copy; keep logic independent of it
     const emailInput = document.getElementById('emailInput');
     const downloadBtn = document.getElementById('downloadBtn');
     const cancelBtn = document.getElementById('cancelBtn');
@@ -220,10 +221,13 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             
+            const dataPlatform = this.getAttribute('data-platform');
             const buttonText = this.textContent.trim();
-            currentPlatform = buttonText.includes('Windows') ? 'Windows' : 
-                           buttonText.includes('Mac') ? 'Mac' : 
-                           buttonText.includes('Web') ? 'Web' : 'Unknown';
+            currentPlatform = dataPlatform || (
+                buttonText.includes('Windows') ? 'Windows' :
+                buttonText.includes('Mac') ? 'Mac' :
+                buttonText.includes('Web') || buttonText.includes('browser') ? 'Web' : 'Unknown'
+            );
             
             // Send Google Analytics event for Windows download
             if (currentPlatform === 'Windows') {
@@ -258,8 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('Google Analytics event sent: download_web');
                 }
             }
-            // Update modal content
-            platformName.textContent = currentPlatform;
+            // Update modal content (no platform label in modal body anymore)
             emailInput.value = '';
             
             // Show modal
@@ -289,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Success - close modal and show success message
             closeModal();
             showSuccessMessage(email, currentPlatform);
-            console.log(`Email collected: ${email} for ${currentPlatform} download`);
+            console.log(`Email collected: ${email} (beta notify) for ${currentPlatform}`);
         } else {
             emailInput.style.borderColor = '#ef4444';
             emailInput.focus();
@@ -348,8 +351,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div style="display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-check-circle" style="font-size: 1.2rem;"></i>
                 <div>
-                    <strong>Thank you!</strong><br>
-                    Download link for ${platform} will be sent to ${email}
+                    <strong>Thanks!</strong><br>
+                    We'll notify ${email} when the ${platform} beta is available.
                 </div>
             </div>
         `;
