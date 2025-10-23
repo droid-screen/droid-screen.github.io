@@ -206,6 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
     createMobileMenu();
 
     // Download button email collection with beautiful modal
+    // Configure this with your Google Apps Script Web App URL
+    const SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby-L1fvh74dGGA57mxLjdGt68vLqkHIHC2GhL0k2JEQtNTXhrvFN3FrSQjpA_g4kv-X/exec';
     // Scope to hero buttons only and use data-platform for reliable detection
     const downloadButtons = document.querySelectorAll('.hero .btn.btn-primary');
     const modal = document.getElementById('emailModal');
@@ -289,6 +291,24 @@ document.addEventListener('DOMContentLoaded', function() {
         // Basic email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (emailRegex.test(email)) {
+            // Send to Google Sheets (fire-and-forget)
+            if (SHEETS_WEB_APP_URL) {
+                try {
+                    fetch(SHEETS_WEB_APP_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email,
+                            platform: currentPlatform,
+                            timestamp: new Date().toISOString(),
+                        }),
+                    });
+                } catch (err) {
+                    console.error('Sheets submit failed (ignored):', err);
+                }
+            }
+
             // Success - close modal and show success message
             closeModal();
             showSuccessMessage(email, currentPlatform);
