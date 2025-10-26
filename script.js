@@ -312,6 +312,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'submit_email', {
+                    'event_category': 'submit',
+                    'event_label': 'Email submitted for beta'
+                });
+                console.log(`Email logged for ${currentPlatform}`);
+            }
+
             // Success - close modal and show success message
             closeModal();
             showSuccessMessage(email, currentPlatform);
